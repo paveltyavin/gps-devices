@@ -9,18 +9,33 @@ To visualize data from gps devices on map there is another project here: https:/
 # How does it work
 
 ```
-                                                           ┌-----------------------┐
-┌-----------------┐   Complicated Chinese protocol         |                       |      {id:1, lat:20, lng:30}
-|Device #1 (gt03b)| <------------------------------------> |                       | -------------------------------->
-└-----------------┘                                        |   Translator server   |
-                                                           |                       |
-┌-----------------┐    Simple NMEA 0183 Message streaming  | * Parses data         |       {id:2, lat:8, lng:30}
-|Device #2 (tr102)| -------------------------------------> | * Understands many    | -------------------------------->
-└-----------------┘                                        |   protocols           |
-                                                           | * Forwards JSON data  |
-┌------------------------┐    Another chinese protocol     |   through TCP.        | {id:2, battery:20, lat:50, lng:2}
-|Device #3 (xexun tk-102)| <-----------------------------> |                       | -------------------------------->
-└------------------------┘                                 └-----------------------┘
+
+ Device #1 (gt03b)     Device #2 (tr102)     Device #3 (xexun tk-102)
+        ↑                     │                        ↑
+        │                     │                        │
+        │                     │                        │
+   Complicated          Simple NMEA 0183            Another
+ chinese protocol          protocol             chinese protocol
+        │                     │                        │
+        ↓                     ↓                        ↓
+┌──────────────────────────────────────────────────────────────────┐
+│                       Translator server                          │
+│                                                                  │
+│       * Understands protocol for every device                    │
+│       * Parses data                                              │
+│       * Forwards JSON data through TCP                           │
+│                                                                  │
+└───────┬─────────────────────┬────────────────────────┬───────────┘
+        │                     │                        │
+  ┌─────┴─────┐         ┌─────┴─────┐          ┌───────┴──────┐
+  │ {         │         │ {         │          │ {            │
+  │   id:1,   │         │   id:2,   │          │   id:3       │
+  │   lat:20, │         │   lat:35, │          │   lat:60,    │
+  │   lng:20  │         │   lng:45  │          │   lng:30,    │
+  │ }         │         │ }         │          │   battery:20 │
+  └─────┬─────┘         └─────┬─────┘          │ }            │
+        │                     │                └───────┬──────┘
+        ↓                     ↓                        ↓
 
 ```
 
