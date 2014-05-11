@@ -51,7 +51,7 @@ To visualize data from gps devices on map there is another project here: https:/
 Imagine you want to listen to gt03b device.
 
 * Setup your device according to your instructions.
-* Write port in ./devices/gt03b/config.js .
+* Write port in ./devices/gt03b/config.js like `exports.port = 9103;`
 * Write function getId in ./devices/gt03b/config.js which will find out device id . If you have only one device,
 write something like `exports.getId = function(message){return 1;};`
 * Run a process `node ./devices/gt03b/server.js`.
