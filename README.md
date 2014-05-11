@@ -43,7 +43,20 @@ To visualize data from gps devices on map there is another project here: https:/
 # Installation
 
 * Clone this git repository on your server
-* Create config.js files from config.example.js.
+* Install node. Execute `npm install`.
+* Create ./config.js file from ./config.example.js. and specify destination host and port.
+
+# Usage
+
+Imagine you want to listen to gt03b device.
+
+* Setup your device according to your instructions.
+* Write port in ./devices/gt03b/config.js .
+* Write function getId in ./devices/gt03b/config.js which will find out device id . If you have only one device,
+write something like `exports.getId = function(message){return 1;};`
+* Run a process `node ./devices/gt03b/server.js`.
+* While your device sends data, watch the log in console or file.
+* If you don't have a device and you want to test server, you can run another process `./devices/gt03b/test.js`
 
 # Similar projects
 
