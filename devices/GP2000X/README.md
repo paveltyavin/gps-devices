@@ -7,16 +7,16 @@ NMEA 0183 format:
 ## Setup
 
 Set your phone as admin phone
-```*ADMIN+79121234567#0000#```
+*ADMIN+79121234567#0000#
 
 GPRS setup. 021.012.123.021 is server ip, 9102 - tcp port, 0000 - password
-```*HOSIP021.012.123.021#9102#0000#```
+*HOSIP021.012.123.021#9102#0000#
 
 Set APN name
-```*AT+CSTT=internet#```
+*AT+CSTT=internet#
 
 Set GPRS mode
-```*WMODE1011#0000#```
+*WMODE1011#0000#
 
 Setup tracker to send gps info every 30 seconds
-```*AUTOT02#30S#0000#```
+*AUTOT02#30S#0000#
