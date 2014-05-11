@@ -44,3 +44,7 @@ To visualize data from gps devices on map there is another project here: https:/
 
 * Clone this git repository on your server
 * Create config.js files from config.example.js.
+
+# Similar projects
+
+(Traccar)[https://github.com/tananaev/traccar] (JAVA)
