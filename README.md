@@ -8,7 +8,8 @@ To visualize data from gps devices on map there is another project here: https:/
 
 # How does it work
 
-```                                                        ┌-----------------------┐
+```
+                                                           ┌-----------------------┐
 ┌-----------------┐   Complicated Chinese protocol         |                       |      {id:1, lat:20, lng:30}
 |Device #1 (gt03b)| <------------------------------------> |                       | -------------------------------->
 └-----------------┘                                        |   Translator server   |
