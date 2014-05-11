@@ -47,4 +47,4 @@ To visualize data from gps devices on map there is another project here: https:/
 
 # Similar projects
 
-(Traccar)[https://github.com/tananaev/traccar] (JAVA)
+[Traccar](https://github.com/tananaev/traccar) (JAVA)

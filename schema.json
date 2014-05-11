@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "gps-devices",
+  "description": "schema for TCP Translator output JSON",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique identifier for a device",
+      "type": "integer"
+    },
+    "name": {
+      "description": "Name of the device",
+      "type": "string"
+    },
+    "lat": {
+      "description": "Latitude",
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "lng": {
+      "description": "Longitude",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 180
+    },
+    "battery": {
+      "description": "Battery indicator",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    }
+  },
+  "required": ["id"]
+}
