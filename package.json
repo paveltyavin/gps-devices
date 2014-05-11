@@ -1,0 +1,22 @@
+{
+  "name": "gps-devices",
+  "version": "0.1.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tyavin Pavel",
+  "license": "MIT",
+  "dependencies": {
+    "winston": "~0.7.3",
+    "crc": "~1.0.0",
+    "crc-itu": "0.0.2",
+    "hexy": "~0.2.5",
+    "json-over-tcp": "~0.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinograd19/gps-devices.git"
+  }
+}
