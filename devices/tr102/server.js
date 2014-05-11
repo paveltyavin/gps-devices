@@ -4,7 +4,7 @@ var deviceConfig = require('./config');
 var jot = require('json-over-tcp');
 var logger = require('./logger');
 
-var client = jot.connect(serverConfig.devicePort);
+var client = jot.connect({port:serverConfig.port, host:serverConfig.host});
 logger.log('debug', 'START TR102 server');
 
 net.createServer(function (socket) {

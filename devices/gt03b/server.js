@@ -40,7 +40,7 @@ function bufToDate(buffer) {
 }
 
 
-var client = jot.connect(serverConfig.devicePort);
+var client = jot.connect({port:serverConfig.port, host:serverConfig.host});
 
 logger.log('debug', 'START GT03B server');
 var hexyFormat = {width: 64, format: 'twos', numbering: 'none', annotate: 'none'};
