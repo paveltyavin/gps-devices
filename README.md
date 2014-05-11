@@ -10,23 +10,23 @@ To visualize data from gps devices on map there is another project here: https:/
 # How does it work
 
 ```
-
- Device #1 (gt03b)     Device #2 (tr102)     Device #3 (xexun tk-102)
+┌─────────────────┐   ┌─────────────────┐   ┌────────────────────────┐
+│Device #1 (gt03b)│   │Device #2 (tr102)│   │Device #3 (xexun tk-102)│
+└─────────────────┘   └───────┬─────────┘   └────────────────────────┘
         ↑                     │                        ↑
-        │                     │                        │
-        │                     │                        │
-   Complicated          Simple NMEA 0183            Another
- chinese protocol          protocol             chinese protocol
-        │                     │                        │
+┌───────┴─────────┐   ┌───────┴─────────┐   ┌──────────┴─────────────┐
+│  Complicated    │   │ Simple NMEA 0183│   │        Another         │
+│chinese protocol │   │    protocol     │   │    chinese protocol    │
+└───────┬─────────┘   └───────┬─────────┘   └──────────┬─────────────┘
         ↓                     ↓                        ↓
-┌──────────────────────────────────────────────────────────────────┐
-│                       Translator server                          │
-│                                                                  │
-│       * Understands protocol for every device                    │
-│       * Parses data                                              │
-│       * Forwards JSON data through TCP                           │
-│                                                                  │
-└───────┬─────────────────────┬────────────────────────┬───────────┘
+┌────────────────────────────────────────────────────────────────────┐
+│                       Translator server                            │
+│                                                                    │
+│       * Understands protocol for every device                      │
+│       * Parses data                                                │
+│       * Forwards JSON data through TCP                             │
+│                                                                    │
+└───────┬─────────────────────┬────────────────────────┬─────────────┘
         │                     │                        │
   ┌─────┴─────┐         ┌─────┴─────┐          ┌───────┴──────┐
   │ {         │         │ {         │          │ {            │
@@ -52,11 +52,12 @@ Imagine you want to listen to gt03b device.
 
 * Setup your device according to your instructions.
 * Write port in ./devices/gt03b/config.js like `exports.port = 9103;`
-* Write function getId in ./devices/gt03b/config.js which will find out device id . If you have only one device,
+* Write function `getId` in ./devices/gt03b/config.js which will find out device id . If you have only one device,
 write something like `exports.getId = function(message){return 1;};`
 * Run a process `node ./devices/gt03b/server.js`.
 * While your device sends data, watch the log in console or file.
 * If you don't have a device and you want to test server, you can run another process `./devices/gt03b/test.js`
+* Watch the log on destination server.
 
 # Similar projects
 
