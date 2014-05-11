@@ -1,2 +1,4 @@
-exports.port = 9103;
-exports.id = 1;
+exports.port = 9101;
+exports.getId = function (message) {
+  return 1;
+}

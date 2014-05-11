@@ -98,9 +98,9 @@ net.createServer(function (socket) {
       var obj = {
         lat: lat,
         lng: lng,
-        id: deviceConfig.id
+        id: deviceConfig.getId()
       };
-      if (date){
+      if (date) {
         obj.date = date;
       }
       client.write(obj);

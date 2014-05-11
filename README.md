@@ -2,7 +2,8 @@
 
 Though there are standards like NMEA 0183, every gps device has unique protocol to send data.
 
-This project aims to understand many protocols and send messages forward in JSON format.
+This project aims to understand many protocols and send messages forward in JSON format using
+[json-over-tcp](https://github.com/turn/json-over-tcp) protocol.
 
 To visualize data from gps devices on map there is another project here: https://github.com/vinograd19/gps-web-tracker
 

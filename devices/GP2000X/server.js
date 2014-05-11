@@ -21,7 +21,7 @@ net.createServer(function (socket) {
     var obj = {};
     obj.lat = parseInt(res[1]) + (parseInt(res[2]) + parseInt(res[3]) * 1e-4) / 60;
     obj.lng = parseInt(res[4]) + (parseInt(res[5]) + parseInt(res[6]) * 1e-4) / 60;
-    obj.id = deviceConfig.id;
+    obj.id = deviceConfig.getId(message);
     client.write(obj);
     return null;
   });
