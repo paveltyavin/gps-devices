@@ -29,6 +29,10 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 100
+    },
+    "date": {
+      "description": "Date of sending message",
+      "type": "Date"
     }
   },
   "required": ["id"]
