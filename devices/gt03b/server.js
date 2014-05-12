@@ -1,8 +1,7 @@
 var net = require('net');
 var crc16 = require('crc-itu').crc16;
 var hexy = require("hexy");
-var jot = require("json-over-tcp");
-var serverConfig = require('./../../config');
+var utils = require('./../../utils');
 var deviceConfig = require('./config');
 var logger = require('./logger');
 
@@ -38,9 +37,6 @@ function bufToDate(buffer) {
     buffer[5]
   );
 }
-
-
-var client = jot.connect({port:serverConfig.port, host:serverConfig.host});
 
 logger.log('debug', 'START GT03B server');
 var hexyFormat = {width: 64, format: 'twos', numbering: 'none', annotate: 'none'};
@@ -97,13 +93,17 @@ net.createServer(function (socket) {
       logger.info('lat, lng', lat, lng);
       var obj = {
         lat: lat,
-        lng: lng,
-        id: deviceConfig.getId()
+        lng: lng
       };
+      if (typeof(deviceConfig.id) === 'function') {
+        obj.id = deviceConfig.id();
+      } else {
+        obj.id = parseInt(deviceConfig.id);
+      }
       if (date) {
         obj.date = date;
       }
-      client.write(obj);
+      utils.sender.write(obj);
     }
 
   });
