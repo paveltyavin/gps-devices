@@ -2,10 +2,10 @@
 
 Though there are standards like NMEA 0183, every gps device has unique protocol to send data.
 
-This project aims to understand many protocols and send messages forward in JSON format using
-[json-over-tcp](https://github.com/turn/json-over-tcp) protocol.
+This project aims to understand many protocols and send forward JSON-data by tcp, http or https.
 
-To visualize data from gps devices on map there is another project here: https://github.com/vinograd19/gps-web-tracker
+An example of project which visualizes data from gps devices on map can be found here:
+https://github.com/vinograd19/gps-web-tracker
 
 # How does it work
 
@@ -24,7 +24,7 @@ To visualize data from gps devices on map there is another project here: https:/
 │                                                                    │
 │       * Understands protocol for every device                      │
 │       * Parses data                                                │
-│       * Forwards JSON data through TCP                             │
+│       * Forwards JSON data through TCP, HTTP or HTTPS              │
 │                                                                    │
 └───────┬─────────────────────┬────────────────────────┬─────────────┘
         │                     │                        │
@@ -52,12 +52,15 @@ Imagine you want to listen to gt03b device.
 
 * Setup your device according to your instructions.
 * Write port in ./devices/gt03b/config.js like `exports.port = 9103;`
-* Write function `getId` in ./devices/gt03b/config.js which will find out device id . If you have only one device,
-write something like `exports.getId = function(message){return 1;};`
 * Run a process `node ./devices/gt03b/server.js`.
 * While your device sends data, watch the log in console or file.
 * If you don't have a device and you want to test server, you can run another process `./devices/gt03b/test.js`
 * Watch the log on destination server.
+
+# Schema
+
+Aside of gps info, many trackers send additional info like battery indication , speed, course, etc.
+For all parameters, there is a schema [here](https://github.com/vinograd19/gps-devices/blob/master/schema.json)
 
 # Similar projects
 
