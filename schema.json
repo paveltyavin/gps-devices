@@ -4,12 +4,33 @@
   "description": "schema for TCP Translator output JSON",
   "type": "object",
   "properties": {
+    "altitude": {
+      "description": "Altitude in m",
+      "type": "number",
+      "minimum": 0
+    },
+    "battery": {
+      "description": "Battery indicator in percents",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "course": {
+      "description": "Course",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360
+    },
+    "date": {
+      "description": "Date of sending message",
+      "type": "Date"
+    },
     "id": {
       "description": "The unique identifier for a device",
       "type": "integer"
     },
-    "name": {
-      "description": "Name of the device",
+    "imei": {
+      "description": "Imei of the device",
       "type": "string"
     },
     "lat": {
@@ -24,15 +45,27 @@
       "minimum": 0,
       "maximum": 180
     },
-    "battery": {
-      "description": "Battery indicator",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100
+    "name": {
+      "description": "Name of the device",
+      "type": "string"
     },
-    "date": {
-      "description": "Date of sending message",
-      "type": "Date"
+    "numberOfSattelites": {
+      "description": "Number of sattelites",
+      "type": "number",
+      "minimum": 0
+    },
+    "password": {
+      "description": "Password of the device",
+      "type": "string"
+    },
+    "speed": {
+      "description": "Speed in km/h",
+      "type": "number",
+      "minimum": 0
+    },
+    "status":{
+      "description": "Status of the device",
+      "type": "string"
     }
   },
   "required": ["id"]
