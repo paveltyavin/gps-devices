@@ -18,7 +18,10 @@ switch (config.connection) {
       hostname: config.host,
       method: config.method,
       port: config.port,
-      path: config.path
+      path: config.path,
+      headers : {
+        'Content-Type': 'application/json'
+      }
     });
 
     break;
@@ -28,7 +31,10 @@ switch (config.connection) {
       hostname: config.host,
       method: config.method,
       port: config.port,
-      path: config.path
+      path: config.path,
+      headers : {
+        'Content-Type': 'application/json'
+      }
     });
 
     break;
