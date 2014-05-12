@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "gps-devices",
-  "description": "schema for TCP Translator output JSON",
+  "description": "schema for GPS devices translator",
   "type": "object",
   "properties": {
     "altitude": {
@@ -34,13 +34,13 @@
       "type": "string"
     },
     "lat": {
-      "description": "Latitude",
+      "description": "Latitude, float number like -64.56",
       "type": "number",
       "minimum": -90,
       "maximum": 90
     },
     "lng": {
-      "description": "Longitude",
+      "description": "Longitude, float number like 34.56",
       "type": "number",
       "minimum": 0,
       "maximum": 180
