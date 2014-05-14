@@ -76,6 +76,9 @@ Define `port` (default is 80 for http and 443 for https), `host`, `path`, `metho
 
 # Supported devices
 
+If you want to add your device - use ./devices/stub for a stub.
+If you don't how to write a server - please write me: pavel@tyavin.name .
+
 Device | Tested
 --- | ---
 gt03b | Yes
