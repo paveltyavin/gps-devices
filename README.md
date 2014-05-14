@@ -5,7 +5,7 @@ Though there are standards like NMEA 0183, every gps device has unique protocol 
 This project aims to understand many protocols and send forward JSON-data by tcp, http or https.
 
 An example of project which visualizes data from gps devices on map can be found
-[here](https://github.com/vinograd19/gps-web-tracker)
+[here](https://github.com/vinograd19/gps-web-tracker).
 
 
 # How does it work
@@ -62,7 +62,7 @@ process will imitate device.
 # Schema
 
 Aside of gps info, many trackers send additional info like battery indication , speed, course, etc.
-For all parameters, there is a schema [here](https://github.com/vinograd19/gps-devices/blob/master/schema.json)
+For all parameters, there is a [schema](https://github.com/vinograd19/gps-devices/blob/master/schema.json).
 
 # Protocol
 
@@ -73,6 +73,22 @@ Define `port` and `host` in config file.
 * HTTP/HTTPS. Requests are sent with `content-type:application/json` header.
 Define `port` (default is 80 for http and 443 for https), `host`, `path`, `method`,  in config file.
 * Dummy. Translator doesn't send anything. Use this just for tests.
+
+# Supported devices
+
+| Device        | Tested        |       |
+| ------------- | ------------- | ----- |
+| gt03b         | yes           | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+Device | Tested
+--- | ---
+gt03b | Yes
+tr102 | Yes
+gp2000x | Yes
+p0008 | No
+
 
 # Similar projects
 
