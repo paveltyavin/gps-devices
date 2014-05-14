@@ -1,5 +1,5 @@
 var config = require('./config');
-var sender;
+var sender = {};
 switch (config.connection) {
   case 'dummy':
     sender.write = function () {
