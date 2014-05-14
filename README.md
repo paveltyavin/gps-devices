@@ -76,12 +76,6 @@ Define `port` (default is 80 for http and 443 for https), `host`, `path`, `metho
 
 # Supported devices
 
-| Device        | Tested        |       |
-| ------------- | ------------- | ----- |
-| gt03b         | yes           | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
 Device | Tested
 --- | ---
 gt03b | Yes
