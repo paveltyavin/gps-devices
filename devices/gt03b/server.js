@@ -4,39 +4,8 @@ var hexy = require("hexy");
 var utils = require('./../../utils');
 var deviceConfig = require('./config');
 var logger = require('./logger');
+var concoxHelpers = require('./../concox-helpers');
 
-function getBytes(x) {
-  var bytes = [];
-  var i = 2;
-  do {
-    bytes[--i] = x & (255);
-    x = x >> 8;
-  } while (x);
-  return bytes;
-}
-
-function bufToPos(buffer) { // buffer ~ [05,FD,27,05]
-  var pos = buffer[0];
-  for (var i = 1; i < buffer.length; i++) {
-    pos = pos << 8;
-    pos += buffer[i];
-  }
-  pos /= 30000;
-  pos /= 60;
-  return pos; // pos ~ 55.8203761
-
-}
-
-function bufToDate(buffer) {
-  return new Date(
-    buffer[0] + 2000,
-    buffer[1] - 1,
-    buffer[2],
-    buffer[3],
-    buffer[4],
-    buffer[5]
-  );
-}
 
 logger.log('debug', 'START GT03B server');
 var hexyFormat = {width: 64, format: 'twos', numbering: 'none', annotate: 'none'};
@@ -53,18 +22,18 @@ net.createServer(function (socket) {
       case 0x01: // login
         break;
       case 0x10: //
-        date = bufToDate(buffer.slice(4, 10));
-        lat = bufToPos(buffer.slice(11, 15));
-        lng = bufToPos(buffer.slice(15, 19));
+        date = concoxHelpers.bufToDate(buffer.slice(4, 10));
+        lat = concoxHelpers.bufToPos(buffer.slice(11, 15));
+        lng = concoxHelpers.bufToPos(buffer.slice(15, 19));
         break;
       case 0x12: //
         break;
       case 0x13: // status heartbeat
         break;
       case 0x16: //
-        date = bufToDate(buffer.slice(4, 10));
-        lat = bufToPos(buffer.slice(11, 15));
-        lng = bufToPos(buffer.slice(15, 19));
+        date = concoxHelpers.bufToDate(buffer.slice(4, 10));
+        lat = concoxHelpers.bufToPos(buffer.slice(11, 15));
+        lng = concoxHelpers.bufToPos(buffer.slice(15, 19));
         break;
       case 0x18: //
         break;
@@ -77,7 +46,7 @@ net.createServer(function (socket) {
     responseArray = [responseLength].concat(responseArray);  // add length byte
 
     var errorCheck = crc16(new Buffer(responseArray));
-    var errorCheckBytes = getBytes(errorCheck);
+    var errorCheckBytes = concoxHelpers.getBytes(errorCheck, 2);
 
     responseArray = [0x78, 0x78].concat(responseArray);  // add start bytes
     responseArray = responseArray.concat(errorCheckBytes); // add error bytes
@@ -90,7 +59,6 @@ net.createServer(function (socket) {
     socket.write(responseBuffer);
 
     if ((lat) && (lng)) {
-      logger.info('lat, lng', lat, lng);
       var obj = {
         lat: lat,
         lng: lng
@@ -103,6 +71,7 @@ net.createServer(function (socket) {
       if (date) {
         obj.date = date;
       }
+      logger.info('id: ' + obj.id + ' lat, lng, date: ' + lat.toFixed(4) + ' ' + lng.toFixed(4) + ' ' + date);
       utils.sender.write(obj);
     }
 

@@ -42,7 +42,7 @@
     "lng": {
       "description": "Longitude, float number like 34.56",
       "type": "number",
-      "minimum": 0,
+      "minimum": -180,
       "maximum": 180
     },
     "name": {
