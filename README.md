@@ -4,8 +4,9 @@ Though there are standards like NMEA 0183, every gps device has unique protocol 
 
 This project aims to understand many protocols and send forward JSON-data by tcp, http or https.
 
-An example of project which visualizes data from gps devices on map can be found here:
-https://github.com/vinograd19/gps-web-tracker
+An example of project which visualizes data from gps devices on map can be found
+[here](https://github.com/vinograd19/gps-web-tracker)
+
 
 # How does it work
 
@@ -54,13 +55,24 @@ Imagine you want to listen to gt03b device.
 * Write port in ./devices/gt03b/config.js like `exports.port = 9103;`
 * Run a process `node ./devices/gt03b/server.js`.
 * While your device sends data, watch the log in console or file.
-* If you don't have a device and you want to test server, you can run another process `./devices/gt03b/test.js`
+* If you don't have a device and you want to test server, you can run another process `./devices/gt03b/device.js`. This
+process will imitate device.
 * Watch the log on destination server.
 
 # Schema
 
 Aside of gps info, many trackers send additional info like battery indication , speed, course, etc.
 For all parameters, there is a schema [here](https://github.com/vinograd19/gps-devices/blob/master/schema.json)
+
+# Protocol
+
+There are several protocols to send output.
+
+* JSON over tcp. This protocol described [here](https://github.com/turn/json-over-tcp).
+Define `port` and `host` in config file.
+* HTTP/HTTPS. Requests are sent with `content-type:application/json` header.
+Define `port` (default is 80 for http and 443 for https), `host`, `path`, `method`,  in config file.
+* Dummy. Translator doesn't send anything. Use this just for tests.
 
 # Similar projects
 
