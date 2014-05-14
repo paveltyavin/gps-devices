@@ -1,9 +1,9 @@
 var net = require('net');
-var deviceConfig = require('./config');
+var config = require('./config');
 var crc16 = require('crc-itu').crc16;
 
 var socket = new net.Socket();
-socket.connect(deviceConfig.port);
+socket.connect(config.port);
 
 
 function getBytes(x, arrayLength) {
