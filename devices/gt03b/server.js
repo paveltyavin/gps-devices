@@ -17,7 +17,7 @@ net.createServer(function (socket) {
     var buffer = new Buffer(data, 'binary');
     logger.info('recieved:', hexy.hexy(buffer, hexyFormat).trim());
     var responseArray = [buffer[3]]; // the fourth byte is the protocol byte
-    var date, lng, lat;
+    var date, lng, lat, MCC, MNC, LAC, cellId, TIC, voltageLevel, GSMSignalStrength, serialNumber;
     switch (buffer[3]) { // find protocol
       case 0x01: // login
         break;
@@ -37,7 +37,7 @@ net.createServer(function (socket) {
         break;
       case 0x18: //
         break;
-      case 0x19: // Combined information package of LBS and status
+      case 0x19: // LBS, Status info package
         break;
     }
     responseArray = responseArray.concat([0x00, 0x01]); // server serial number
