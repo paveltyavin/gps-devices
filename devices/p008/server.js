@@ -11,18 +11,25 @@ net.createServer(function (socket) {
   socket.setEncoding("utf8");
   socket.addListener('data', function (data) {
     var buffer = new Buffer(data, 'binary');
-    var id = buffer.slice(5, 12);
+    var id = buffer.slice(4, 11);
 
     var message = buffer.slice(13).toString('utf8');
-    var latDeg = parseInt(buffer.slice(26,28).toString('utf8'));
-    var latMin = parseFloat(buffer.slice(28,35).toString('utf8'));
+    var latDeg = parseInt(buffer.slice(26, 28).toString('utf8'));
+    var latMin = parseFloat(buffer.slice(28, 35).toString('utf8'));
 
-    var lngDeg = parseInt(buffer.slice(38,41).toString('utf8'));
-    var lngMin = parseFloat(buffer.slice(41,47).toString('utf8'));
+    var lngDeg = parseInt(buffer.slice(38, 41).toString('utf8'));
+    var lngMin = parseFloat(buffer.slice(41, 47).toString('utf8'));
 
-    var lat = latDeg + latMin/60;
-    var lng = lngDeg + lngMin/60;
-    logger.info('recieved:', message);
+    var lat = latDeg + latMin / 60;
+    var lng = lngDeg + lngMin / 60;
+    logger.info('message recieved:', message);
+
+    var i;
+    var idStr = '';
+    for (i = 0; i < id.length; i++) {
+      idStr += id[i].toString(16);
+    }
+    logger.info('idStr recieved:', idStr);
 
     if ((lat) && (lng)) {
       var obj = {
@@ -30,9 +37,11 @@ net.createServer(function (socket) {
         lng: lng
       };
       if (typeof(deviceConfig.id) === 'function') {
-        obj.id = deviceConfig.id();
+        obj.id = deviceConfig.id(idStr);
+        logger.info('function obj.id:', obj.id);
       } else {
         obj.id = parseInt(deviceConfig.id);
+        logger.info('int obj.id:', obj.id);
       }
       logger.info('id: ' + obj.id + ' lat, lng, date: ' + lat.toFixed(4) + ' ' + lng.toFixed(4));
       utils.sender.write(obj);
