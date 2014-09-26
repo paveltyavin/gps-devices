@@ -15,14 +15,14 @@ net.createServer(function (socket) {
       return null;
     }
     var obj = {};
-    obj.lng = parseInt(res[1]) + parseInt(res[2]) * 0.001;
-    obj.lat = parseInt(res[3]) + parseInt(res[4]) * 0.001;
+    obj.lat = parseInt(res[1]) + parseInt(res[2]) * 0.0001;
+    obj.lng = parseInt(res[3]) + parseInt(res[4]) * 0.0001;
     if (typeof(config.id) === 'function'){
       obj.id = config.id(message);
     } else {
       obj.id = parseInt(config.id);
     }
-    logger.info(message);
+    logger.info(obj.lng, obj.lat);
     utils.sender.write(obj);
     return null;
   });

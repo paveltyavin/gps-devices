@@ -6,12 +6,22 @@ var logger = require('./logger');
 
 logger.log('debug', 'START p008 server');
 
+var bufToString = function(buffer){
+  var i, res;
+  res = '';
+  for (i = 0; i < buffer.length; i++) {
+    res += ' '+ buffer[i].toString(16);
+  }
+  return res;
+};
+
 net.createServer(function (socket) {
   socket.setTimeout(0);
   socket.setEncoding("utf8");
   socket.addListener('data', function (data) {
     var buffer = new Buffer(data, 'binary');
     var id = buffer.slice(4, 11);
+//    var id = buffer.slice(5, 12);
 
     var message = buffer.slice(13).toString('utf8');
     var latDeg = parseInt(buffer.slice(26, 28).toString('utf8'));
@@ -22,14 +32,13 @@ net.createServer(function (socket) {
 
     var lat = latDeg + latMin / 60;
     var lng = lngDeg + lngMin / 60;
-    logger.info('message recieved:', message);
 
-    var i;
-    var idStr = '';
-    for (i = 0; i < id.length; i++) {
-      idStr += id[i].toString(16);
-    }
-    logger.info('idStr recieved:', idStr);
+    logger.info('buffer recieved:', bufToString(buffer));
+    logger.info('message recieved:', message);
+    logger.info('latDeg:', latDeg);
+    logger.info('latMin:', latMin);
+    logger.info('lat:', lat);
+    logger.info('idStr recieved:', bufToString(id));
 
     if ((lat) && (lng)) {
       var obj = {
