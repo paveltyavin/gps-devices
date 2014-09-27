@@ -21,7 +21,7 @@ var sender = function () {
     + Math.floor((lat - Math.floor(lat)) * 60).toString() + '.'
     + paddy(Math.floor((lat - Math.floor(lat)) * 60 * 100), 4).toString() +
     ',166.2,0.1,91.04,05*37!';
-
+  logger.log('debug', message);
   socket.write(message);
 };
 

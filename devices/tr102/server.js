@@ -24,6 +24,7 @@ net.createServer(function (socket) {
       obj.id = parseInt(deviceConfig.id);
     }
     logger.info(message);
+    logger.info(obj.id + ' ' + obj.lat.toFixed(4) + ' ' +  obj.lng.toFixed(4));
     utils.sender.write(obj);
     return null;
   });
