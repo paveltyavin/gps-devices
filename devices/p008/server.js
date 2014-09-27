@@ -24,7 +24,7 @@ net.createServer(function (socket) {
 //    var id = buffer.slice(5, 12);
 
     var message = buffer.slice(13).toString('utf8');
-    var latDeg = parseInt(buffer.slice(26, 28).toString('utf8'));
+    var latDeg = parseInt(buffer.slice(25, 27).toString('utf8'));
     var latMin = parseFloat(buffer.slice(28, 35).toString('utf8'));
 
     var lngDeg = parseInt(buffer.slice(38, 41).toString('utf8'));
@@ -37,6 +37,8 @@ net.createServer(function (socket) {
     logger.info('message recieved:', message);
     logger.info('latDeg:', latDeg);
     logger.info('latMin:', latMin);
+    logger.info('lngDeg:', lngDeg);
+    logger.info('lngMin:', lngMin);
     logger.info('lat:', lat);
     logger.info('idStr recieved:', bufToString(id));
 
