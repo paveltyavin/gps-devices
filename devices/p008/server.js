@@ -10,6 +10,14 @@ var bufToString = function(buffer){
   var i, res;
   res = '';
   for (i = 0; i < buffer.length; i++) {
+    res += buffer[i].toString(16);
+  }
+  return res;
+};
+var bufToStringWithSpaces = function(buffer){
+  var i, res;
+  res = '';
+  for (i = 0; i < buffer.length; i++) {
     res += ' '+ buffer[i].toString(16);
   }
   return res;
@@ -21,11 +29,11 @@ net.createServer(function (socket) {
   socket.addListener('data', function (data) {
     var buffer = new Buffer(data, 'binary');
     var id = buffer.slice(4, 11);
-//    var id = buffer.slice(5, 12);
+    var idStr = bufToString(id);
 
     var message = buffer.slice(13).toString('utf8');
     var latDeg = parseInt(buffer.slice(25, 27).toString('utf8'));
-    var latMin = parseFloat(buffer.slice(28, 35).toString('utf8'));
+    var latMin = parseFloat(buffer.slice(27, 35).toString('utf8'));
 
     var lngDeg = parseInt(buffer.slice(38, 41).toString('utf8'));
     var lngMin = parseFloat(buffer.slice(41, 47).toString('utf8'));
@@ -40,7 +48,7 @@ net.createServer(function (socket) {
     logger.info('lngDeg:', lngDeg);
     logger.info('lngMin:', lngMin);
     logger.info('lat:', lat);
-    logger.info('idStr recieved:', bufToString(id));
+    logger.info('idStr recieved:', idStr);
 
     if ((lat) && (lng)) {
       var obj = {
